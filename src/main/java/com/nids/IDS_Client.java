@@ -1,5 +1,6 @@
 package com.nids;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -28,7 +29,7 @@ public class IDS_Client {
             System.out.println("Connected to IDS Server. Type messages to simulate network packets:");
             String userInput;
                 //keeps reading user input and sends it to server through TCP
-            while ((userInput = input.readLine()) != null) {
+            while ((userInput = BoundedLineReader.readLine(input, 5_000_000)) != null) {
                 out.println(userInput);
             }
 
